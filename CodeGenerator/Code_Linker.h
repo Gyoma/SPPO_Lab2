@@ -14,5 +14,5 @@ public:
 
     explicit CodeLinker() = delete;
 
-    static std::string compile(CodeGenerator generator);
+    static std::string compile(const CodeGenerator& generator);
 };

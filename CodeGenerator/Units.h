@@ -70,7 +70,7 @@ public:
         DEFAULT
     };
 
-    explicit ClassUnit(const std::string& name, Flags modifier);
+    explicit ClassUnit(const std::string& name, Flags modifier = AccessModifier::DEFAULT);
     
     virtual ~ClassUnit() = default;
 

@@ -16,7 +16,8 @@ std::string cpp_ClassUnit::compile(unsigned int level) const
         result += ACCESS_MODIFIERS[i] + ":\n";
         for (const auto& f : m_fields[i])
         {
-            result += f->compile(level + 1);
+            if (f)
+                result += f->compile(level + 1);
         }
         result += "\n";
     }
@@ -26,8 +27,8 @@ std::string cpp_ClassUnit::compile(unsigned int level) const
     return result;
 }
 
-cpp_MethodUnit::cpp_MethodUnit(const std::string& name, 
-    const std::string& returnType, Flags flags, 
+cpp_MethodUnit::cpp_MethodUnit(const std::string& name,
+    const std::string& returnType, Flags flags,
     const std::vector<std::string>& args) :
     MethodUnit(name, returnType, flags, args)
 {}
@@ -69,7 +70,8 @@ std::string cpp_MethodUnit::compile(unsigned int level) const
 
     for (const auto& b : m_body)
     {
-        result += b->compile(level + 1);
+        if (b)
+            result += b->compile(level + 1);
     }
 
     result += generateShift(level) + "}\n";

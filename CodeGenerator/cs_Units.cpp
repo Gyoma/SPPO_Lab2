@@ -30,7 +30,8 @@ std::string cs_ClassUnit::compile(unsigned int level) const
 
         for (const auto& f : m_fields[i])
         {
-            result += generateShift(level + 1) + ACCESS_MODIFIERS[i] + " " + f->compile();
+            if (f)
+                result += generateShift(level + 1) + ACCESS_MODIFIERS[i] + " " + f->compile();
         }
         result += "\n";
     }
@@ -73,7 +74,8 @@ std::string cs_MethodUnit::compile(unsigned int level) const
 
     for (const auto& b : m_body)
     {
-        result += b->compile(level + 2);
+        if (b)
+            result += b->compile(level + 2);
     }
 
     result += generateShift(level + 1) + "}\n";
