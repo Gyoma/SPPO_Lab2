@@ -3,8 +3,8 @@
 std::string CodeLinker::compile(const CodeGenerator& generator)
 {
     /*
-        Ïîëó÷àåì ïðèñòàâêó òîãî ÿçûêà, ãåíåðàòîð êîòîðîãî ïåðåäàí
-        Íàïðèìåð: ñpp_ , java_ , cs_
+        ÐŸÐ¾Ð»ÑƒÑ‡Ð°ÐµÐ¼ Ð¿Ñ€Ð¸ÑÑ‚Ð°Ð²ÐºÑƒ Ñ‚Ð¾Ð³Ð¾ ÑÐ·Ñ‹ÐºÐ°, Ð³ÐµÐ½ÐµÑ€Ð°Ñ‚Ð¾Ñ€ ÐºÐ¾Ñ‚Ð¾Ñ€Ð¾Ð³Ð¾ Ð¿ÐµÑ€ÐµÐ´Ð°Ð½
+        ÐÐ°Ð¿Ñ€Ð¸Ð¼ÐµÑ€: Ñpp_ , java_ , cs_
     */
     std::string prefix = typeid(generator).name();
     int start = prefix.find(' ') + 1, end = prefix.find('_') + 1;
@@ -23,9 +23,9 @@ std::string CodeLinker::compile(const CodeGenerator& generator)
             MethodUnit::STATIC)), ClassUnit::PRIVATE);
 
         /*
-            Â ìîäèôèêàòîðû áëîêà (â äàííîì ñëó÷àå ôóíêöèè) ìîæíî ïåðåäàâàòü ëþáûå ôëàãè (virtual, const, static)
-            äàæå åñëè â ÿçûêå òàêîé ìîäèôèêàòîð èñïîëüçîâàòü íåûâîçìîæíî.
-            Êàêèå ìîäèôèêàòîðû áóäóò ó÷òåíû óæå çàâèñèò îò êîíêðåòíîé ðåàëèçàöèè ìåòîäà MethodUnit::compile
+            Ð’ Ð¼Ð¾Ð´Ð¸Ñ„Ð¸ÐºÐ°Ñ‚Ð¾Ñ€Ñ‹ Ð±Ð»Ð¾ÐºÐ° (Ð² Ð´Ð°Ð½Ð½Ð¾Ð¼ ÑÐ»ÑƒÑ‡Ð°Ðµ Ñ„ÑƒÐ½ÐºÑ†Ð¸Ð¸) Ð¼Ð¾Ð¶Ð½Ð¾ Ð¿ÐµÑ€ÐµÐ´Ð°Ð²Ð°Ñ‚ÑŒ Ð»ÑŽÐ±Ñ‹Ðµ Ñ„Ð»Ð°Ð³Ð¸ (virtual, const, static)
+            Ð´Ð°Ð¶Ðµ ÐµÑÐ»Ð¸ Ð² ÑÐ·Ñ‹ÐºÐµ Ñ‚Ð°ÐºÐ¾Ð¹ Ð¼Ð¾Ð´Ð¸Ñ„Ð¸ÐºÐ°Ñ‚Ð¾Ñ€ Ð¸ÑÐ¿Ð¾Ð»ÑŒÐ·Ð¾Ð²Ð°Ñ‚ÑŒ Ð½ÐµÑ‹Ð²Ð¾Ð·Ð¼Ð¾Ð¶Ð½Ð¾.
+            ÐšÐ°ÐºÐ¸Ðµ Ð¼Ð¾Ð´Ð¸Ñ„Ð¸ÐºÐ°Ñ‚Ð¾Ñ€Ñ‹ Ð±ÑƒÐ´ÑƒÑ‚ ÑƒÑ‡Ñ‚ÐµÐ½Ñ‹ ÑƒÐ¶Ðµ Ð·Ð°Ð²Ð¸ÑÐ¸Ñ‚ Ð¾Ñ‚ ÐºÐ¾Ð½ÐºÑ€ÐµÑ‚Ð½Ð¾Ð¹ Ñ€ÐµÐ°Ð»Ð¸Ð·Ð°Ñ†Ð¸Ð¸ Ð¼ÐµÑ‚Ð¾Ð´Ð° MethodUnit::compile
         */
         Class->add(std::shared_ptr< MethodUnit >(generator.getMethodCode("testFunc3", "void",
             MethodUnit::VIRTUAL | MethodUnit::CONST, std::vector<std::string>{ "int", "double", "UserType" })),
@@ -36,7 +36,7 @@ std::string CodeLinker::compile(const CodeGenerator& generator)
 
         if (method)
         {
-            //äîáàâëÿåì â ìåòîä ôóíêöèþ âûâîäà
+            //Ð´Ð¾Ð±Ð°Ð²Ð»ÑÐµÐ¼ Ð² Ð¼ÐµÑ‚Ð¾Ð´ Ñ„ÑƒÐ½ÐºÑ†Ð¸ÑŽ Ð²Ñ‹Ð²Ð¾Ð´Ð°
             method->add(std::shared_ptr< PrintUnit >(generator.getPrintOperCode("Hello, world!")));
             Class->add(method, ClassUnit::PROTECTED);
         }
